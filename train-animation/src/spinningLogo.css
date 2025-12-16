@@ -1,0 +1,129 @@
+.spinning-logo-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  overflow: hidden;
+}
+
+.text-left {
+  position: absolute;
+  left: calc(50% - 350px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.text-right {
+  position: absolute;
+  right: calc(50% - 450px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.text-top {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.spinning-logo {
+  width: 100%;
+  height: 100%;
+  animation: spin 5s linear infinite;
+  object-fit: contain;
+  background: transparent;
+  mix-blend-mode: multiply;
+}
+
+.animated-text {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 56px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.letter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  color: #3498db;
+}
+
+.letter.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.space {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.space.show {
+  opacity: 1;
+}
+
+.e-letter {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 1s ease;
+  color: #3498db;
+}
+
+.e-letter.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.e-letter.transform {
+  animation: transformToThree 1s ease forwards;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes transformToThree {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.letter:nth-child(1) { transition-delay: 0.1s; }
+.letter:nth-child(2) { transition-delay: 0.2s; }
+.letter:nth-child(3) { transition-delay: 0.3s; }
+.letter:nth-child(4) { transition-delay: 0.4s; }

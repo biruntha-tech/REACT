@@ -1,0 +1,19 @@
+.homepage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .homepage {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}

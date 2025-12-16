@@ -1,0 +1,368 @@
+.app {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #E0F6FF 0%, #87CEEB 100%);
+  min-height: 100vh;
+}
+
+.control-panel {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  background: rgba(255,255,255,0.9);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.journey-info {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  background: rgba(255,255,255,0.9);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h1 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.control-panel {
+  margin-bottom: 3rem;
+}
+
+.start-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.start-btn:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.start-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.train-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 30%, #228B22 60%, #006400 100%);
+  overflow: hidden;
+}
+
+.mountains {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 10% 80%, #2F4F2F 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 85%, #228B22 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 75%, #2F4F2F 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 90%, #32CD32 0%, transparent 40%),
+    radial-gradient(ellipse at 95% 70%, #228B22 0%, transparent 50%);
+}
+
+.track-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.track {
+  position: absolute;
+  width: 400vw;
+  height: 100%;
+  transition: transform 2s ease-in-out;
+  z-index: 2;
+}
+
+.railway-base {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #654321;
+  transform: translateY(-50%);
+  clip-path: polygon(
+    0% 50%, 25% 30%, 50% 50%, 75% 70%, 100% 50%,
+    100% 60%, 75% 80%, 50% 60%, 25% 40%, 0% 60%
+  );
+}
+
+.railway-tracks {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #000000;
+  transform: translateY(-50%);
+  clip-path: polygon(
+    0% 50%, 25% 30%, 50% 50%, 75% 70%, 100% 50%,
+    100% 55%, 75% 75%, 50% 55%, 25% 35%, 0% 55%
+  );
+}
+
+.railway-ties {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 30px,
+    #8B4513 30px,
+    #8B4513 40px
+  );
+  transform: translateY(-50%);
+  clip-path: polygon(
+    0% 45%, 25% 25%, 50% 45%, 75% 65%, 100% 45%,
+    100% 65%, 75% 85%, 50% 65%, 25% 45%, 0% 65%
+  );
+}
+
+.station-wrapper {
+  position: absolute;
+  top: 50%;
+}
+
+.station {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.station-building {
+  position: relative;
+  width: 40px;
+  height: 50px;
+  z-index: 3;
+}
+
+.building-roof {
+  width: 40px;
+  height: 15px;
+  background: #8B4513;
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  transition: all 0.3s ease;
+}
+
+.building-body {
+  width: 40px;
+  height: 30px;
+  background: #D2B48C;
+  border: 2px solid #A0522D;
+  transition: all 0.3s ease;
+}
+
+.building-door {
+  width: 8px;
+  height: 12px;
+  background: #654321;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.station.visited .building-body {
+  background: #87CEEB;
+  border-color: #4682B4;
+}
+
+.station.visited .building-roof {
+  background: #4682B4;
+}
+
+.station.active .building-body {
+  background: #FFD700;
+  border-color: #FFA500;
+  animation: pulse 1s infinite;
+}
+
+.station.active .building-roof {
+  background: #FFA500;
+  animation: pulse 1s infinite;
+}
+
+.station.arriving .building-body {
+  background: #98FB98;
+  border-color: #32CD32;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.station.arriving .building-roof {
+  background: #32CD32;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.station.arriving .station-board {
+  background: #32CD32;
+  color: white;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.station.arriving .year {
+  font-weight: bold;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(50, 205, 50, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(50, 205, 50, 0.8);
+  }
+}
+
+.station-board {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c3e50;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 9px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.year {
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.title {
+  font-size: 8px;
+  opacity: 0.9;
+}
+
+.station.active .station-board {
+  background: #f39c12;
+  color: #2c3e50;
+}
+
+.station.active .year {
+  font-weight: bold;
+}
+
+.station.active .title {
+  opacity: 1;
+}
+
+.station.visited .station-board {
+  background: #3498db;
+  color: white;
+}
+
+.station.visited .year {
+  font-weight: bold;
+}
+
+
+
+.train {
+  position: fixed;
+  top: 50%;
+  left: 70%;
+  font-size: 48px;
+  z-index: 4;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  transform: translate(-50%, -50%);
+  display: flex;
+
+  align-items: center;
+}
+
+.compartment {
+  font-size: 48px;
+  margin-left: -8px;
+}
+
+.train.moving {
+  animation: trainMove 0.3s ease-in-out infinite;
+}
+
+
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes trainMove {
+  0% { 
+    transform: translate(-50%, -50%) translateY(0px); 
+  }
+  50% { 
+    transform: translate(-50%, -50%) translateY(-2px); 
+  }
+  100% { 
+    transform: translate(-50%, -50%) translateY(0px); 
+  }
+}
+
+.journey-info {
+  background: #ecf0f1;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.journey-info p {
+  margin: 0.5rem 0;
+  color: #2c3e50;
+}
+
+.zigzag-positions {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .station-name {
+    font-size: 10px;
+    width: 80px;
+  }
+  
+  .train {
+    font-size: 24px;
+  }
+  
+  .train-container {
+    height: 300px;
+  }
+  
+  .track {
+    height: 200px;
+  }
+}

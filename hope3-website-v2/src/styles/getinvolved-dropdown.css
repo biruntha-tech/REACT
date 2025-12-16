@@ -1,0 +1,40 @@
+.get-involved-wrapper {
+  position: relative;
+}
+
+.get-involved-btn {
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.get-involved-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 180px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.get-involved-dropdown a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.get-involved-dropdown a:hover {
+  background: #f3f4f6;
+}
